@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Bell, MapPin, AlertTriangle, TrendingUp, Droplets, Zap, Clock, Users, Shield, Building } from 'lucide-react';
+import { Menu, X, Bell, MapPin, AlertTriangle, TrendingUp, Droplets, Zap, Clock, Users, Shield, Building, ArrowUp } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import DashboardCharts from './components/DashboardCharts';
 import LocationWidget from './components/LocationWidget';
@@ -7,14 +7,23 @@ import NotificationPanel from './components/NotificationPanel';
 import AIInsights from './components/AIInsights';
 import ImpactSummary from './components/ImpactSummary';
 import EmergencyTips from './components/EmergencyTips';
+import LandingPage from './components/LandingPage';
+import AIInsightsPage from './components/AIInsightsPage';
+import RiverStatsPage from './components/RiverStatsPage';
+import EmergencyTipsPage from './components/EmergencyTipsPage';
+
+type PageType = 'dashboard' | 'ai-insights' | 'river-stats' | 'emergency-tips' | 'charts' | 'location' | 'notifications';
 
 function App() {
+  const [showLandingPage, setShowLandingPage] = useState(true);
+  const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [notifications, setNotifications] = useState([
-    { id: 1, type: 'warning', message: '⚠️ River rising at Kanpur – Take precautions', time: '2 min ago' },
-    { id: 2, type: 'info', message: '🟡 Rainfall increasing at Patna', time: '5 min ago' },
-    { id: 3, type: 'success', message: '✅ Water level stable at Allahabad', time: '10 min ago' }
+    { id: 1, type: 'warning' as const, message: '⚠️ River rising at Kanpur – Take precautions', time: '2 min ago' },
+    { id: 2, type: 'info' as const, message: '🟡 Rainfall increasing at Patna', time: '5 min ago' },
+    { id: 3, type: 'success' as const, message: '✅ Water level stable at Allahabad', time: '10 min ago' }
   ]);
   const [notificationCount, setNotificationCount] = useState(0);
 
@@ -33,7 +42,7 @@ function App() {
       const randomMessage = newNotifications[Math.floor(Math.random() * newNotifications.length)];
       const newNotification = {
         id: Date.now(),
-        type: Math.random() > 0.5 ? 'warning' : 'info',
+        type: (Math.random() > 0.5 ? 'warning' : 'info') as 'warning' | 'info',
         message: randomMessage,
         time: 'Just now'
       };
@@ -45,6 +54,55 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle scroll to show/hide scroll-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleEnterApp = () => {
+    setShowLandingPage(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleNavigation = (page: PageType) => {
+    setCurrentPage(page);
+    setSidebarOpen(false);
+  };
+
+  const handleBackToDashboard = () => {
+    setCurrentPage('dashboard');
+  };
+
+  // Show landing page if showLandingPage is true
+  if (showLandingPage) {
+    return <LandingPage onEnterApp={handleEnterApp} />;
+  }
+
+  // Render different pages based on currentPage
+  if (currentPage === 'ai-insights') {
+    return <AIInsightsPage onBack={handleBackToDashboard} />;
+  }
+
+  if (currentPage === 'river-stats') {
+    return <RiverStatsPage onBack={handleBackToDashboard} />;
+  }
+
+  if (currentPage === 'emergency-tips') {
+    return <EmergencyTipsPage onBack={handleBackToDashboard} />;
+  }
+
+  // Main Dashboard
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
       {/* Header */}
@@ -60,7 +118,7 @@ function App() {
               </button>
               <div className="flex items-center space-x-2">
                 <Droplets className="h-8 w-8 text-blue-600" />
-                <h1 className="text-xl font-bold text-gray-900">Ganga Flood Monitor</h1>
+                <h1 className="text-xl font-bold text-gray-900">Bindu</h1>
               </div>
             </div>
             
@@ -88,25 +146,49 @@ function App() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* AI Insights */}
-        <AIInsights />
+        <section id="ai-insights">
+          <AIInsights />
+        </section>
         
         {/* Dashboard Charts */}
-        <DashboardCharts />
+        <section id="charts" className="mt-8">
+          <DashboardCharts />
+        </section>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
           {/* Location Widget */}
-          <LocationWidget />
+          <section id="location">
+            <LocationWidget />
+          </section>
           
           {/* Impact Summary */}
-          <ImpactSummary />
+          <section id="stats">
+            <ImpactSummary />
+          </section>
         </div>
         
         {/* Emergency Tips */}
-        <EmergencyTips />
+        <section id="emergency" className="mt-8">
+          <EmergencyTips />
+        </section>
       </main>
 
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-40"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
+
       {/* Sidebar */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)}
+        onNavigate={handleNavigation}
+      />
       
       {/* Notifications Panel */}
       <NotificationPanel 

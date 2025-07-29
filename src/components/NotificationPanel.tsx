@@ -99,13 +99,6 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({
             })
           )}
         </div>
-        
-        <div className="absolute bottom-6 left-6 right-6">
-          <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-4 rounded-lg text-white text-center">
-            <p className="text-sm font-medium">Emergency Alerts Active</p>
-            <p className="text-xs opacity-90 mt-1">Real-time monitoring in progress</p>
-          </div>
-        </div>
       </div>
     </>
   );

@@ -1,20 +1,40 @@
-import React from 'react';
-import { X, BarChart3, AlertTriangle, Bell, MapPin, Shield, Info } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, BarChart3, AlertTriangle, Bell, MapPin, Shield, Info, Brain } from 'lucide-react';
+
+type PageType = 'dashboard' | 'ai-insights' | 'river-stats' | 'emergency-tips' | 'charts' | 'location' | 'notifications';
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  onNavigate: (page: PageType) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate }) => {
+  const [showEmergencyHelpline, setShowEmergencyHelpline] = useState(true);
+  
   const menuItems = [
-    { icon: BarChart3, label: 'River Stats', href: '#stats' },
-    { icon: AlertTriangle, label: 'Flood Risk Charts', href: '#charts' },
-    { icon: Bell, label: 'Live Notifications', href: '#notifications' },
-    { icon: MapPin, label: 'Set Location', href: '#location' },
-    { icon: Shield, label: 'Emergency Tips', href: '#emergency' },
-    { icon: Info, label: 'About Dashboard', href: '#about' }
+    { icon: Brain, label: 'AI Insights', page: 'ai-insights' as PageType },
+    { icon: BarChart3, label: 'River Stats', page: 'river-stats' as PageType },
+    { icon: AlertTriangle, label: 'Flood Risk Charts', page: 'charts' as PageType },
+    { icon: Bell, label: 'Live Notifications', page: 'notifications' as PageType },
+    { icon: MapPin, label: 'Set Location', page: 'location' as PageType },
+    { icon: Shield, label: 'Emergency Tips', page: 'emergency-tips' as PageType },
+    { icon: Info, label: 'About Dashboard', page: 'dashboard' as PageType }
   ];
+
+  const handleNavigation = (page: PageType) => {
+    onNavigate(page);
+    onClose(); // Close sidebar after navigation
+  };
+
+  const handleEmergencyCall = () => {
+    // Simulate emergency call functionality
+    alert('Emergency call initiated. Connecting to emergency services...');
+  };
+
+  const handleCloseEmergencyHelpline = () => {
+    setShowEmergencyHelpline(false);
+  };
 
   return (
     <>
@@ -44,27 +64,40 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           <ul className="space-y-2">
             {menuItems.map((item, index) => (
               <li key={index}>
-                <a
-                  href={item.href}
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 transition-colors group"
-                  onClick={onClose}
+                <button
+                  onClick={() => handleNavigation(item.page)}
+                  className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 transition-colors group text-left"
                 >
                   <item.icon className="h-5 w-5 text-blue-600 group-hover:text-blue-700" />
                   <span className="text-gray-700 group-hover:text-blue-700 font-medium">
                     {item.label}
                   </span>
-                </a>
+                </button>
               </li>
             ))}
           </ul>
         </nav>
         
-        <div className="absolute bottom-6 left-6 right-6">
-          <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-4 rounded-lg text-white">
-            <h3 className="font-semibold mb-1">Emergency Helpline</h3>
-            <p className="text-sm opacity-90">Call 108 for immediate assistance</p>
+        {showEmergencyHelpline && (
+          <div className="absolute bottom-6 left-6 right-6">
+            <div className="bg-gradient-to-r from-red-500 to-red-600 p-4 rounded-lg text-white relative">
+              <button
+                onClick={handleCloseEmergencyHelpline}
+                className="absolute top-2 right-2 p-1 rounded-full hover:bg-red-400 transition-colors"
+              >
+                <X className="h-4 w-4 text-white" />
+              </button>
+              <h3 className="font-semibold mb-1">Emergency Helpline</h3>
+              <p className="text-sm opacity-90 mb-2">Call 108 for immediate assistance</p>
+              <button
+                onClick={handleEmergencyCall}
+                className="w-full bg-white text-red-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                🚨 Call Emergency
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
