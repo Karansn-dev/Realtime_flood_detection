@@ -41,11 +41,11 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({
   const getNotificationStyle = (type: string) => {
     switch (type) {
       case 'warning':
-        return 'bg-red-50 border-red-200 text-red-800';
+        return 'glass-effect border-red-400/30 text-red-200 hover:border-red-300/50';
       case 'success':
-        return 'bg-green-50 border-green-200 text-green-800';
+        return 'glass-effect border-green-400/30 text-green-200 hover:border-green-300/50';
       default:
-        return 'bg-blue-50 border-blue-200 text-blue-800';
+        return 'glass-effect border-cyan-400/30 text-cyan-200 hover:border-cyan-300/50';
     }
   };
 
@@ -54,30 +54,30 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({
       {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity"
+          className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 transition-all duration-300"
           onClick={onClose}
         />
       )}
       
       {/* Panel */}
-      <div className={`fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ${
+      <div className={`fixed top-0 right-0 h-full w-96 glass-effect border-l border-teal-200/30 shadow-2xl z-50 transform transition-all duration-300 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">Live Notifications</h2>
+        <div className="flex items-center justify-between p-6 border-b border-teal-200/30">
+          <h2 className="text-xl font-bold text-white drop-shadow-lg">Live Notifications</h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-teal-400/20 transition-all duration-300 hover:scale-110"
           >
-            <X className="h-5 w-5 text-gray-500" />
+            <X className="h-5 w-5 text-cyan-300 hover:text-white" />
           </button>
         </div>
         
         <div className="p-6 space-y-4 overflow-y-auto h-full pb-20">
           {notifications.length === 0 ? (
-            <div className="text-center text-gray-500 mt-8">
-              <Clock className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-              <p>No new notifications</p>
+            <div className="text-center text-cyan-300 mt-8">
+              <Clock className="h-12 w-12 mx-auto mb-4 text-teal-400 animate-pulse" />
+              <p className="text-white/80">No new notifications</p>
             </div>
           ) : (
             notifications.map((notification) => {
@@ -85,13 +85,13 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({
               return (
                 <div
                   key={notification.id}
-                  className={`p-4 rounded-lg border animate-slideIn ${getNotificationStyle(notification.type)}`}
+                  className={`p-4 rounded-xl border animate-slideIn transition-all duration-300 hover:scale-105 hover:shadow-lg ${getNotificationStyle(notification.type)}`}
                 >
                   <div className="flex items-start space-x-3">
                     <Icon className="h-5 w-5 flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <p className="text-sm font-medium">{notification.message}</p>
-                      <p className="text-xs opacity-70 mt-1">{notification.time}</p>
+                      <p className="text-sm font-medium drop-shadow-sm">{notification.message}</p>
+                      <p className="text-xs opacity-70 mt-1 text-white/60">{notification.time}</p>
                     </div>
                   </div>
                 </div>

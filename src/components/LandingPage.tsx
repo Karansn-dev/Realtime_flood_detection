@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Droplets, Shield, TrendingUp, MapPin, AlertTriangle, ArrowRight, Play, Users, Clock } from 'lucide-react';
+import AnimatedBackground from './AnimatedBackground';
 
 interface LandingPageProps {
   onEnterApp: () => void;
@@ -10,40 +11,25 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterApp }) => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background Image with Enhanced Submerged Effect */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/river-background.webp')`,
-          backgroundColor: '#0f172a',
-        }}
-      >
-        {/* Primary Gradient Overlay - Creates submerged effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-blue-900/75 to-teal-900/80"></div>
-        
-        {/* Secondary Overlay - Enhances depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-        
-        {/* Color Enhancement Overlay - Blends with river colors */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 to-teal-800/30"></div>
-        
-        {/* Subtle Vignette Effect */}
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-slate-900/40"></div>
+      {/* Animated 3D Background */}
+      <AnimatedBackground />
+      
+      {/* Enhanced Background Pattern Overlay */}
+      <div className="absolute inset-0 opacity-10 z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(20,184,166,0.15)_1px,transparent_1px)] bg-[length:30px_30px] animate-pulse-slow"></div>
       </div>
 
-      {/* Enhanced Background Pattern */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[length:25px_25px]"></div>
-      </div>
-
-      {/* Floating Elements - Enhanced for submerged effect */}
-      <div className="absolute top-20 left-10 w-24 h-24 bg-teal-500/30 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute top-40 right-20 w-36 h-36 bg-cyan-400/25 rounded-full blur-xl animate-pulse delay-1000"></div>
-      <div className="absolute bottom-20 left-1/4 w-28 h-28 bg-blue-500/25 rounded-full blur-xl animate-pulse delay-2000"></div>
-      <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-emerald-400/20 rounded-full blur-xl animate-pulse delay-1500"></div>
+      {/* Floating Elements - Enhanced with new animations */}
+      <div className="absolute top-20 left-10 w-24 h-24 bg-teal-400/40 rounded-full blur-xl animate-float z-10"></div>
+      <div className="absolute top-40 right-20 w-36 h-36 bg-cyan-400/35 rounded-full blur-xl animate-pulse-slow delay-1000 z-10"></div>
+      <div className="absolute bottom-20 left-1/4 w-28 h-28 bg-blue-400/30 rounded-full blur-xl animate-float delay-2000 z-10"></div>
+      <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-emerald-400/25 rounded-full blur-xl animate-pulse-slow delay-1500 z-10"></div>
+      
+      {/* Additional depth layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/20 via-transparent to-teal-900/30 z-10"></div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           {/* Logo and Title */}
           <div className="mb-8">

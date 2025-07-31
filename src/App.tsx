@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Bell, MapPin, AlertTriangle, TrendingUp, Droplets, Zap, Clock, Users, Shield, Building, ArrowUp } from 'lucide-react';
+import { Menu, Bell, Droplets, ArrowUp } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import DashboardCharts from './components/DashboardCharts';
 import LocationWidget from './components/LocationWidget';
@@ -11,6 +11,9 @@ import LandingPage from './components/LandingPage';
 import AIInsightsPage from './components/AIInsightsPage';
 import RiverStatsPage from './components/RiverStatsPage';
 import EmergencyTipsPage from './components/EmergencyTipsPage';
+import AnimatedBackground from './components/AnimatedBackground';
+import ParticleSystem from './components/ParticleSystem';
+import LocationAccessWidget from './components/LocationAccessWidget';
 
 type PageType = 'dashboard' | 'ai-insights' | 'river-stats' | 'emergency-tips' | 'charts' | 'location' | 'notifications';
 
@@ -104,36 +107,44 @@ function App() {
 
   // Main Dashboard
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
+      {/* Particle System */}
+      <ParticleSystem particleCount={30} color="#14b8a6" className="opacity-60" />
+      
+      {/* Content Overlay */}
+      <div className="relative z-20 min-h-screen bg-gradient-to-br from-slate-900/10 via-transparent to-teal-900/20">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-blue-100 sticky top-0 z-50">
+      <header className="glass-effect border-b border-teal-200/30 sticky top-0 z-50 water-shimmer">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="p-2 rounded-lg hover:bg-blue-100 transition-colors"
+                className="p-2 rounded-lg hover:bg-teal-500/20 transition-all duration-300 hover:scale-105 border border-transparent hover:border-teal-400/30"
               >
-                <Menu className="h-6 w-6 text-blue-700" />
+                <Menu className="h-6 w-6 text-cyan-300 hover:text-cyan-200 transition-colors" />
               </button>
               <div className="flex items-center space-x-2">
-                <Droplets className="h-8 w-8 text-blue-600" />
-                <h1 className="text-xl font-bold text-gray-900">Bindu</h1>
+                <Droplets className="h-8 w-8 text-teal-400 animate-pulse-slow" />
+                <h1 className="text-xl font-bold text-white drop-shadow-lg">Bindu</h1>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="hidden sm:flex items-center space-x-2 bg-green-100 px-3 py-1 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-green-700 font-medium">Live Monitoring</span>
+              <div className="hidden sm:flex items-center space-x-2 bg-green-500/20 px-3 py-1 rounded-full border border-green-400/30 hover:bg-green-500/30 transition-all duration-300">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+                <span className="text-sm text-green-300 font-medium">Live Monitoring</span>
               </div>
               <button
                 onClick={() => setNotificationOpen(true)}
-                className="relative p-2 rounded-lg hover:bg-blue-100 transition-colors"
+                className="relative p-2 rounded-lg hover:bg-teal-500/20 transition-all duration-300 hover:scale-105 border border-transparent hover:border-teal-400/30"
               >
-                <Bell className="h-6 w-6 text-blue-700" />
+                <Bell className="h-6 w-6 text-cyan-300 hover:text-cyan-200 transition-colors" />
                 {notificationCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-red-500/90 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse border border-red-400/50 shadow-lg shadow-red-500/50">
                     {notificationCount > 9 ? '9+' : notificationCount}
                   </span>
                 )}
@@ -144,9 +155,14 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+        {/* Location Access Widget - Top Right */}
+        <div className="absolute top-0 right-4 sm:right-6 lg:right-8 z-30">
+          <LocationAccessWidget className="w-64" />
+        </div>
+        
         {/* AI Insights */}
-        <section id="ai-insights">
+        <section id="ai-insights" className="mt-20 sm:mt-8">
           <AIInsights />
         </section>
         
@@ -197,6 +213,7 @@ function App() {
         notifications={notifications}
         onClearCount={() => setNotificationCount(0)}
       />
+      </div>
     </div>
   );
 }
