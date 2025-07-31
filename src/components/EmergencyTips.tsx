@@ -50,32 +50,32 @@ const EmergencyTips: React.FC = () => {
   ];
 
   return (
-    <div id="emergency" className="mt-8 bg-white rounded-xl p-6 shadow-lg border border-blue-100">
+    <div id="emergency" className="mt-8 glass-effect rounded-xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
       <div className="flex items-center space-x-2 mb-6">
-        <AlertTriangle className="h-6 w-6 text-red-600" />
-        <h3 className="text-lg font-semibold text-gray-900">Emergency Preparedness Guide</h3>
+        <AlertTriangle className="h-6 w-6 text-red-400 animate-pulse-slow" />
+        <h3 className="text-lg font-semibold text-white drop-shadow-lg">Emergency Preparedness Guide</h3>
       </div>
 
       {/* Emergency Actions */}
       <div className="space-y-4 mb-8">
         {/* Before Flood */}
-        <div className="border border-gray-200 rounded-lg">
+        <div className="glass-effect border border-white/20 rounded-lg hover-lift">
           <button
             onClick={() => toggleSection('before')}
-            className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+            className="w-full flex items-center justify-between p-4 text-left hover:bg-white/10 transition-all duration-300"
           >
-            <span className="font-medium text-gray-900">Before Flood - Preparation</span>
+            <span className="font-medium text-white drop-shadow">Before Flood - Preparation</span>
             {openSections.before ? 
-              <ChevronDown className="h-5 w-5 text-gray-500" /> : 
-              <ChevronRight className="h-5 w-5 text-gray-500" />
+              <ChevronDown className="h-5 w-5 text-gray-300" /> : 
+              <ChevronRight className="h-5 w-5 text-gray-300" />
             }
           </button>
           {openSections.before && (
             <div className="px-4 pb-4">
               <ul className="space-y-2">
                 {emergencyData.before.map((tip, index) => (
-                  <li key={index} className="text-sm text-gray-700 flex items-start">
-                    <span className="text-blue-500 mr-2">•</span>
+                  <li key={index} className="text-sm text-gray-300 flex items-start">
+                    <span className="text-cyan-400 mr-2">•</span>
                     {tip}
                   </li>
                 ))}
@@ -85,22 +85,22 @@ const EmergencyTips: React.FC = () => {
         </div>
 
         {/* During Flood */}
-        <div className="border border-gray-200 rounded-lg">
+        <div className="glass-effect border border-white/20 rounded-lg hover-lift">
           <button
             onClick={() => toggleSection('during')}
-            className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+            className="w-full flex items-center justify-between p-4 text-left hover:bg-white/10 transition-all duration-300"
           >
-            <span className="font-medium text-gray-900">During Flood - Safety Actions</span>
+            <span className="font-medium text-white drop-shadow">During Flood - Safety Actions</span>
             {openSections.during ? 
-              <ChevronDown className="h-5 w-5 text-gray-500" /> : 
-              <ChevronRight className="h-5 w-5 text-gray-500" />
+              <ChevronDown className="h-5 w-5 text-gray-300" /> : 
+              <ChevronRight className="h-5 w-5 text-gray-300" />
             }
           </button>
           {openSections.during && (
             <div className="px-4 pb-4">
               <ul className="space-y-2">
                 {emergencyData.during.map((tip, index) => (
-                  <li key={index} className="text-sm text-gray-700 flex items-start">
+                  <li key={index} className="text-sm text-gray-300 flex items-start">
                     <span className="text-red-500 mr-2">•</span>
                     {tip}
                   </li>
@@ -111,22 +111,22 @@ const EmergencyTips: React.FC = () => {
         </div>
 
         {/* After Flood */}
-        <div className="border border-gray-200 rounded-lg">
+        <div className="glass-effect border border-white/20 rounded-lg hover-lift">
           <button
             onClick={() => toggleSection('after')}
-            className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+            className="w-full flex items-center justify-between p-4 text-left hover:bg-white/10 transition-all duration-300"
           >
-            <span className="font-medium text-gray-900">After Flood - Recovery</span>
+            <span className="font-medium text-white drop-shadow">After Flood - Recovery</span>
             {openSections.after ? 
-              <ChevronDown className="h-5 w-5 text-gray-500" /> : 
-              <ChevronRight className="h-5 w-5 text-gray-500" />
+              <ChevronDown className="h-5 w-5 text-gray-300" /> : 
+              <ChevronRight className="h-5 w-5 text-gray-300" />
             }
           </button>
           {openSections.after && (
             <div className="px-4 pb-4">
               <ul className="space-y-2">
                 {emergencyData.after.map((tip, index) => (
-                  <li key={index} className="text-sm text-gray-700 flex items-start">
+                  <li key={index} className="text-sm text-gray-300 flex items-start">
                     <span className="text-green-500 mr-2">•</span>
                     {tip}
                   </li>
@@ -141,20 +141,20 @@ const EmergencyTips: React.FC = () => {
         {/* Emergency Helplines */}
         <div>
           <div className="flex items-center space-x-2 mb-4">
-            <Phone className="h-5 w-5 text-blue-600" />
-            <h4 className="font-semibold text-gray-900">Emergency Helplines</h4>
+            <Phone className="h-5 w-5 text-cyan-400 animate-pulse-slow" />
+            <h4 className="font-semibold text-white drop-shadow">Emergency Helplines</h4>
           </div>
           <div className="space-y-3">
             {helplines.map((helpline, index) => (
-              <div key={index} className="bg-blue-50 p-3 rounded-lg">
+              <div key={index} className="glass-effect p-3 rounded-lg border border-white/20 hover-lift">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium text-blue-900">{helpline.name}</p>
-                    <p className="text-sm text-blue-700">{helpline.description}</p>
+                    <p className="font-medium text-white drop-shadow">{helpline.name}</p>
+                    <p className="text-sm text-gray-300">{helpline.description}</p>
                   </div>
                   <a 
                     href={`tel:${helpline.number}`}
-                    className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors"
+                    className="glass-effect text-white px-3 py-1 rounded-full text-sm font-medium hover:scale-110 transition-all duration-300 border border-white/20 shadow-lg"
                   >
                     {helpline.number}
                   </a>
@@ -167,16 +167,16 @@ const EmergencyTips: React.FC = () => {
         {/* Nearby Safe Zones */}
         <div>
           <div className="flex items-center space-x-2 mb-4">
-            <MapPin className="h-5 w-5 text-green-600" />
-            <h4 className="font-semibold text-gray-900">Nearby Safe Zones</h4>
+            <MapPin className="h-5 w-5 text-green-400 animate-pulse-slow" />
+            <h4 className="font-semibold text-white drop-shadow">Nearby Safe Zones</h4>
           </div>
           <div className="space-y-3">
             {safeZones.map((zone, index) => (
-              <div key={index} className="bg-green-50 p-3 rounded-lg">
-                <p className="font-medium text-green-900">{zone.name}</p>
+              <div key={index} className="glass-effect p-3 rounded-lg border border-white/20 hover-lift">
+                <p className="font-medium text-white drop-shadow">{zone.name}</p>
                 <div className="flex justify-between items-center mt-1">
-                  <span className="text-sm text-green-700">{zone.distance} away</span>
-                  <span className="text-xs bg-green-200 text-green-800 px-2 py-1 rounded-full">
+                  <span className="text-sm text-gray-300">{zone.distance} away</span>
+                  <span className="text-xs glass-effect text-green-300 px-2 py-1 rounded-full border border-white/20">
                     {zone.capacity}
                   </span>
                 </div>

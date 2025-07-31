@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Bell, MapPin, AlertTriangle, TrendingUp, Droplets, Zap, Clock, Users, Shield, Building, ArrowUp } from 'lucide-react';
+import AnimatedBackground from './components/AnimatedBackground';
+import ParticleField from './components/ParticleField';
+import RippleEffect from './components/RippleEffect';
+import ScrollAnimations from './components/ScrollAnimations';
 import Sidebar from './components/Sidebar';
 import DashboardCharts from './components/DashboardCharts';
 import LocationWidget from './components/LocationWidget';
@@ -104,36 +108,49 @@ function App() {
 
   // Main Dashboard
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Advanced Background Effects */}
+      <AnimatedBackground />
+      <ParticleField particleCount={80} color="#60a5fa" />
+      <RippleEffect intensity={1.2} color="#0ea5e9" />
+      
+      {/* Enhanced gradient overlay */}
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-900/20 via-blue-900/10 to-cyan-900/20 pointer-events-none -z-5"></div>
+      
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-blue-100 sticky top-0 z-50">
+      <header className="glass-effect border-b border-white/20 sticky top-0 z-50 backdrop-blur-strong">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="p-2 rounded-lg hover:bg-blue-100 transition-colors"
+                className="p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover-lift"
               >
-                <Menu className="h-6 w-6 text-blue-700" />
+                <Menu className="h-6 w-6 text-white drop-shadow-lg" />
               </button>
               <div className="flex items-center space-x-2">
-                <Droplets className="h-8 w-8 text-blue-600" />
-                <h1 className="text-xl font-bold text-gray-900">Bindu</h1>
+                <div className="relative">
+                  <Droplets className="h-8 w-8 text-cyan-400 animate-glow" />
+                  <div className="absolute inset-0 animate-pulse">
+                    <Droplets className="h-8 w-8 text-cyan-300 opacity-50" />
+                  </div>
+                </div>
+                <h1 className="text-xl font-bold text-white drop-shadow-lg">Bindu</h1>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="hidden sm:flex items-center space-x-2 bg-green-100 px-3 py-1 rounded-full">
+              <div className="hidden sm:flex items-center space-x-2 glass-effect px-3 py-1 rounded-full">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-green-700 font-medium">Live Monitoring</span>
+                <span className="text-sm text-green-300 font-medium drop-shadow">Live Monitoring</span>
               </div>
               <button
                 onClick={() => setNotificationOpen(true)}
-                className="relative p-2 rounded-lg hover:bg-blue-100 transition-colors"
+                className="relative p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover-lift"
               >
-                <Bell className="h-6 w-6 text-blue-700" />
+                <Bell className="h-6 w-6 text-white drop-shadow-lg" />
                 {notificationCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse shadow-lg">
                     {notificationCount > 9 ? '9+' : notificationCount}
                   </span>
                 )}
@@ -146,38 +163,48 @@ function App() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* AI Insights */}
-        <section id="ai-insights">
-          <AIInsights />
-        </section>
+        <ScrollAnimations animation="fadeInUp" delay={100}>
+          <section id="ai-insights">
+            <AIInsights />
+          </section>
+        </ScrollAnimations>
         
         {/* Dashboard Charts */}
-        <section id="charts" className="mt-8">
-          <DashboardCharts />
-        </section>
+        <ScrollAnimations animation="fadeInUp" delay={200}>
+          <section id="charts" className="mt-8">
+            <DashboardCharts />
+          </section>
+        </ScrollAnimations>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
           {/* Location Widget */}
-          <section id="location">
-            <LocationWidget />
-          </section>
+          <ScrollAnimations animation="fadeInLeft" delay={300}>
+            <section id="location">
+              <LocationWidget />
+            </section>
+          </ScrollAnimations>
           
           {/* Impact Summary */}
-          <section id="stats">
-            <ImpactSummary />
-          </section>
+          <ScrollAnimations animation="fadeInRight" delay={400}>
+            <section id="stats">
+              <ImpactSummary />
+            </section>
+          </ScrollAnimations>
         </div>
         
         {/* Emergency Tips */}
-        <section id="emergency" className="mt-8">
-          <EmergencyTips />
-        </section>
+        <ScrollAnimations animation="fadeInUp" delay={500}>
+          <section id="emergency" className="mt-8">
+            <EmergencyTips />
+          </section>
+        </ScrollAnimations>
       </main>
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-40"
+          className="fixed bottom-6 right-6 glass-effect text-white p-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-40 animate-glow"
         >
           <ArrowUp className="h-5 w-5" />
         </button>
