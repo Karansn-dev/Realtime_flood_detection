@@ -607,6 +607,7 @@ const DashboardCharts: React.FC = () => {
   return (
     <div id="charts" className="space-y-8">
       {/* Live Status Header */}
+<<<<<<< HEAD
       <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
@@ -624,49 +625,79 @@ const DashboardCharts: React.FC = () => {
             <div className="text-right">
               <div className="text-sm text-cyan-300">Last Update</div>
               <div className="text-sm font-medium text-white drop-shadow-lg">{liveIndicators.lastUpdate.toLocaleTimeString()}</div>
+=======
+      <div className="glass-effect-dark rounded-2xl p-6 text-white shadow-2xl border border-white/20 relative overflow-hidden">
+        {/* Animated background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="data-flow h-full w-full"></div>
+        </div>
+        <div className="absolute top-0 left-0 right-0 h-px scan-line"></div>
+        
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <Activity className="h-8 w-8 animate-pulse text-cyan-400" />
+              <div className="absolute inset-0 animate-glow">
+                <Activity className="h-8 w-8 text-cyan-300 opacity-50" />
+              </div>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">Real-Time Dashboard</h2>
+              <p className="text-gray-300">Live monitoring data from LiDAR sensors and AI prediction models</p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 glass-effect px-3 py-2 rounded-lg border border-white/20">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium">LIVE</span>
+            </div>
+            <div className="text-right">
+              <div className="text-sm text-gray-300">Last Update</div>
+              <div className="text-sm font-medium">{liveIndicators.lastUpdate.toLocaleTimeString()}</div>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
         </div>
         
         {/* Live Indicators */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+          <div className="glass-effect rounded-lg p-4 border border-white/20 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-blue-100 text-sm">Current Level</div>
+                <div className="text-gray-300 text-sm">Current Level</div>
                 <div className="text-2xl font-bold">{liveIndicators.currentLevel.toFixed(1)}m</div>
               </div>
-              <Droplets className="h-8 w-8 text-blue-200" />
+              <Droplets className="h-8 w-8 text-cyan-400 animate-pulse-slow" />
             </div>
           </div>
           
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+          <div className="glass-effect rounded-lg p-4 border border-white/20 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-blue-100 text-sm">Trend</div>
+                <div className="text-gray-300 text-sm">Trend</div>
                 <div className="text-2xl font-bold capitalize">{liveIndicators.trend}</div>
               </div>
-              <TrendingUp className={`h-8 w-8 ${liveIndicators.trend === 'rising' ? 'text-red-200' : 'text-green-200'}`} />
+              <TrendingUp className={`h-8 w-8 animate-float ${liveIndicators.trend === 'rising' ? 'text-red-400' : 'text-green-400'}`} />
             </div>
           </div>
           
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+          <div className="glass-effect rounded-lg p-4 border border-white/20 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-blue-100 text-sm">Risk Level</div>
+                <div className="text-gray-300 text-sm">Risk Level</div>
                 <div className="text-2xl font-bold capitalize">{liveIndicators.riskLevel}</div>
               </div>
-              <AlertTriangle className="h-8 w-8 text-yellow-200" />
+              <AlertTriangle className="h-8 w-8 text-yellow-400 animate-pulse-slow" />
             </div>
           </div>
           
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+          <div className="glass-effect rounded-lg p-4 border border-white/20 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-blue-100 text-sm">Status</div>
+                <div className="text-gray-300 text-sm">Status</div>
                 <div className="text-2xl font-bold">Active</div>
               </div>
-              <Zap className="h-8 w-8 text-green-200" />
+              <Zap className="h-8 w-8 text-green-400 animate-glow" />
             </div>
           </div>
         </div>
@@ -674,12 +705,21 @@ const DashboardCharts: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* River Level vs Time */}
+<<<<<<< HEAD
         <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer group hover:scale-102">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white drop-shadow-lg">River Level vs Time</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50"></div>
               <span className="text-xs text-cyan-300">Live</span>
+=======
+        <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">River Level vs Time</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-300">Live</span>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
           <div className="h-64">
@@ -688,12 +728,21 @@ const DashboardCharts: React.FC = () => {
         </div>
 
         {/* Rainfall by Location */}
+<<<<<<< HEAD
         <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer group hover:scale-102">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white drop-shadow-lg">Rainfall by Location</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
               <span className="text-xs text-green-300">Live</span>
+=======
+        <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">Rainfall by Location</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-300">Live</span>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
           <div className="h-64">
@@ -702,12 +751,21 @@ const DashboardCharts: React.FC = () => {
         </div>
 
         {/* AI Prediction vs Actual */}
+<<<<<<< HEAD
         <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer group hover:scale-102">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white drop-shadow-lg">AI Model Prediction vs Actual Level</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50"></div>
               <span className="text-xs text-purple-300">AI</span>
+=======
+        <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">AI Model Prediction vs Actual Level</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-300">AI</span>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
           <div className="h-64">
@@ -716,12 +774,21 @@ const DashboardCharts: React.FC = () => {
         </div>
 
         {/* Stacked Bar Chart */}
+<<<<<<< HEAD
         <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer group hover:scale-102">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white drop-shadow-lg">Rainfall + Discharge + Water Level</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse shadow-lg shadow-orange-400/50"></div>
               <span className="text-xs text-orange-300">Live</span>
+=======
+        <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">Rainfall + Discharge + Water Level</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-300">Live</span>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
           <div className="h-64">
@@ -730,12 +797,21 @@ const DashboardCharts: React.FC = () => {
         </div>
 
         {/* Flood Causes Pie Chart */}
+<<<<<<< HEAD
         <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer group hover:scale-102">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white drop-shadow-lg">Cause of Flood Events</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse shadow-lg shadow-red-400/50"></div>
               <span className="text-xs text-red-300">Analysis</span>
+=======
+        <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">Cause of Flood Events</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-300">Analysis</span>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
           <div className="h-64">
@@ -744,12 +820,21 @@ const DashboardCharts: React.FC = () => {
         </div>
 
         {/* Year-wise Flood Frequency */}
+<<<<<<< HEAD
         <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-teal-200/30 hover:border-teal-300/50 transition-all duration-500 water-shimmer group hover:scale-102">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white drop-shadow-lg">Year-wise Flood Frequency</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse shadow-lg shadow-indigo-400/50"></div>
               <span className="text-xs text-indigo-300">Trend</span>
+=======
+        <div className="glass-effect rounded-2xl p-6 shadow-2xl border border-white/20 hover-lift card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">Year-wise Flood Frequency</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-300">Trend</span>
+>>>>>>> c035e61300575846e1d29157a127c4e72e077801
             </div>
           </div>
           <div className="h-64">

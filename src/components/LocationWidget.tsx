@@ -112,69 +112,69 @@ const LocationWidget: React.FC = () => {
   const riskInfo = getRiskMessage();
 
   return (
-    <div id="location" className="bg-white rounded-xl p-4 shadow-lg border border-gray-100">
+    <div id="location" className="glass-effect rounded-xl p-4 shadow-2xl border border-white/20 hover-lift card-hover">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-blue-50 rounded-lg">
-            <MapPin className="h-5 w-5 text-blue-600" />
+          <div className="p-2 glass-effect rounded-lg border border-white/20">
+            <MapPin className="h-5 w-5 text-cyan-400 animate-pulse-slow" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Check Flood Risk at Your Location</h3>
-            <p className="text-xs text-gray-600">Real-time risk assessment using AI and sensor data</p>
+            <h3 className="text-lg font-semibold text-white drop-shadow-lg">Check Flood Risk at Your Location</h3>
+            <p className="text-xs text-gray-300">Real-time risk assessment using AI and sensor data</p>
           </div>
         </div>
-        <div className="flex items-center space-x-2 bg-green-50 px-2 py-1 rounded-full">
+        <div className="flex items-center space-x-2 glass-effect px-2 py-1 rounded-full border border-white/20">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-xs text-green-700 font-medium">LIVE</span>
+          <span className="text-xs text-green-300 font-medium">LIVE</span>
         </div>
       </div>
 
       {/* Live Stats Bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">
+        <div className="glass-effect border border-white/20 rounded-lg p-3 hover-lift">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-blue-600 text-xs font-medium">Nearby Sensors</div>
-              <div className="text-lg font-bold text-blue-700">{liveStats.nearbySensors}</div>
+              <div className="text-cyan-400 text-xs font-medium">Nearby Sensors</div>
+              <div className="text-lg font-bold text-white">{liveStats.nearbySensors}</div>
             </div>
-            <Activity className="h-5 w-5 text-blue-500" />
+            <Activity className="h-5 w-5 text-cyan-400 animate-pulse-slow" />
           </div>
         </div>
         
-        <div className="bg-green-50 border border-green-100 rounded-lg p-3">
+        <div className="glass-effect border border-white/20 rounded-lg p-3 hover-lift">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-green-600 text-xs font-medium">Last Update</div>
-              <div className="text-sm font-bold text-green-700">{liveStats.lastUpdate}</div>
+              <div className="text-green-400 text-xs font-medium">Last Update</div>
+              <div className="text-sm font-bold text-white">{liveStats.lastUpdate}</div>
             </div>
-            <Clock className="h-5 w-5 text-green-500" />
+            <Clock className="h-5 w-5 text-green-400 animate-pulse-slow" />
           </div>
         </div>
         
-        <div className="bg-purple-50 border border-purple-100 rounded-lg p-3">
+        <div className="glass-effect border border-white/20 rounded-lg p-3 hover-lift">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-purple-600 text-xs font-medium">Coverage</div>
-              <div className="text-sm font-bold text-purple-700">{liveStats.coverageRadius}</div>
+              <div className="text-purple-400 text-xs font-medium">Coverage</div>
+              <div className="text-sm font-bold text-white">{liveStats.coverageRadius}</div>
             </div>
-            <Shield className="h-5 w-5 text-purple-500" />
+            <Shield className="h-5 w-5 text-purple-400 animate-glow" />
           </div>
         </div>
         
-        <div className="bg-orange-50 border border-orange-100 rounded-lg p-3">
+        <div className="glass-effect border border-white/20 rounded-lg p-3 hover-lift">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-orange-600 text-xs font-medium">Active Alerts</div>
-              <div className="text-lg font-bold text-orange-700">{liveStats.activeAlerts}</div>
+              <div className="text-orange-400 text-xs font-medium">Active Alerts</div>
+              <div className="text-lg font-bold text-white">{liveStats.activeAlerts}</div>
             </div>
-            <AlertTriangle className="h-5 w-5 text-orange-500" />
+            <AlertTriangle className="h-5 w-5 text-orange-400 animate-pulse-slow" />
           </div>
         </div>
       </div>
 
       <form onSubmit={handleLocationSubmit} className="space-y-3">
         <div>
-          <label htmlFor="location-input" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="location-input" className="block text-sm font-medium text-gray-300 mb-2">
             Enter City/District
           </label>
           <div className="relative">
@@ -184,9 +184,9 @@ const LocationWidget: React.FC = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="e.g., Varanasi, Kanpur, Allahabad"
-              className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              className="w-full px-4 py-2 pl-10 glass-effect border border-white/20 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
             />
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-cyan-400" />
           </div>
         </div>
 
@@ -194,7 +194,7 @@ const LocationWidget: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-300 font-medium flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            className="flex-1 glass-effect text-white px-4 py-2 rounded-lg hover:scale-105 transition-all duration-300 font-medium flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl border border-white/20 hover-lift"
           >
             {loading ? (
               <>
@@ -212,7 +212,7 @@ const LocationWidget: React.FC = () => {
             type="button"
             onClick={getCurrentLocation}
             disabled={loading}
-            className="flex-1 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-all duration-300 font-medium flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            className="flex-1 glass-effect-dark text-gray-300 px-4 py-2 rounded-lg hover:scale-105 transition-all duration-300 font-medium flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl border border-white/20 hover-lift"
           >
             <Crosshair className="h-4 w-4" />
             <span>{loading ? 'Getting Location...' : 'Use My Location'}</span>
@@ -222,37 +222,37 @@ const LocationWidget: React.FC = () => {
 
       {/* Risk Display */}
       {riskInfo && (
-        <div className={`mt-4 p-4 rounded-lg border ${riskInfo.bg} ${riskInfo.border} animate-fadeIn shadow-md`}>
+        <div className={`mt-4 p-4 rounded-lg border glass-effect border-white/20 animate-fadeIn shadow-2xl hover-lift`}>
           <div className="flex items-start space-x-3">
-            <div className={`p-2 rounded-lg ${riskInfo.bg} ${riskInfo.border}`}>
+            <div className={`p-2 rounded-lg glass-effect border border-white/20`}>
               <riskInfo.icon className={`h-5 w-5 ${riskInfo.color}`} />
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between mb-2">
-                <p className={`font-semibold text-base ${riskInfo.color}`}>
+                <p className={`font-semibold text-base text-white drop-shadow-lg`}>
                   {location || 'Selected Location'}
                 </p>
-                <TrendingUp className={`h-4 w-4 ${riskInfo.color} animate-pulse`} />
+                <TrendingUp className={`h-4 w-4 ${riskInfo.color} animate-pulse-slow`} />
               </div>
-              <p className="text-sm text-gray-700 mb-1">{riskInfo.message}</p>
-              <p className="text-xs text-gray-600 font-medium">Recommendation: {riskInfo.recommendation}</p>
+              <p className="text-sm text-gray-300 mb-1">{riskInfo.message}</p>
+              <p className="text-xs text-gray-400 font-medium">Recommendation: {riskInfo.recommendation}</p>
             </div>
           </div>
         </div>
       )}
 
       {/* Enhanced Map Placeholder */}
-      <div className="mt-4 bg-gray-50 rounded-lg h-40 flex items-center justify-center border border-gray-200">
-        <div className="text-center text-gray-500">
+      <div className="mt-4 glass-effect-dark rounded-lg h-40 flex items-center justify-center border border-white/20 hover-lift">
+        <div className="text-center text-gray-300">
           <div className="relative mb-3">
-            <MapPin className="h-10 w-10 mx-auto text-gray-400" />
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+            <MapPin className="h-10 w-10 mx-auto text-cyan-400 animate-pulse-slow" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full animate-pulse"></div>
           </div>
           <p className="text-sm font-medium">Interactive Map Integration</p>
           <p className="text-xs mt-1">(Google Maps/Leaflet would be integrated here)</p>
           {currentLocation && (
-            <div className="mt-2 p-2 bg-white rounded shadow-sm">
-              <p className="text-xs font-mono text-gray-600">
+            <div className="mt-2 p-2 glass-effect rounded shadow-2xl border border-white/20">
+              <p className="text-xs font-mono text-gray-300">
                 Lat: {currentLocation.lat.toFixed(4)}, Lng: {currentLocation.lng.toFixed(4)}
               </p>
             </div>
